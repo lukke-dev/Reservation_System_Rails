@@ -1,13 +1,20 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
-    %title ReservationSystem
-    %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
+    %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
+    %title Reservation System
+    %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body
-    = yield
+  %body#page-top
+    #wrapper
+      = render 'layouts/sidebar'
+      #content-wrapper.d-flex.flex-column
+        #content
+          = render 'layouts/topbar'
+          = yield
+        = render 'layouts/footer'
+    = render 'layouts/scroll_top'
