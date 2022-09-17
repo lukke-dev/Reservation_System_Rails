@@ -5,6 +5,8 @@ import "channels"
 import 'bootstrap'
 import '../stylesheets/application'
 import "@fortawesome/fontawesome-free/css/all"
+import ApexCharts from "apexcharts";
+window.ApexCharts = ApexCharts;
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;

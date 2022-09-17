@@ -12,6 +12,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'haml-rails'
 gem 'devise'
+gem 'apexcharts'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
