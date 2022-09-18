@@ -7,6 +7,7 @@ import '../stylesheets/application'
 import "@fortawesome/fontawesome-free/css/all"
 import ApexCharts from "apexcharts";
 window.ApexCharts = ApexCharts;
+global.toastr = require("toastr")  
 var jQuery = require('jquery')
 global.$ = global.jQuery = jQuery;
 window.$ = window.jQuery = jQuery;
@@ -32,3 +33,21 @@ $(document).on('scroll', function() {
 		$('.scroll-to-top').fadeOut();
 	}
 });
+
+global.toastr.options = {
+	"closeButton": true,
+	"debug": false,
+	"newestOnTop": false,
+	"progressBar": true,
+	"positionClass": "toast-top-right",
+	"preventDuplicates": false,
+	"onclick": null,
+	"showDuration": "300",
+	"hideDuration": "1000",
+	"timeOut": "5000",
+	"extendedTimeOut": "1000",
+	"showEasing": "swing",
+	"hideEasing": "linear",
+	"showMethod": "fadeIn",
+	"hideMethod": "fadeOut"
+}

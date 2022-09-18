@@ -185,6 +185,8 @@ GEM
     temple (0.8.2)
     thor (1.2.1)
     tilt (2.0.11)
+    toastr-rails (1.0.3)
+      railties (>= 3.1.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -224,6 +226,7 @@ DEPENDENCIES
   rails (~> 6.1.4)
   sass-rails (>= 6)
   spring
+  toastr-rails
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

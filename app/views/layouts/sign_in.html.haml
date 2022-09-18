@@ -9,13 +9,12 @@
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
-  %body#page-top
-    #wrapper
-      = render 'layouts/sidebar'
-      #content-wrapper.d-flex.flex-column
-        #content
-          = render 'layouts/topbar'
-          %div.px-5.mt-5
-            = yield
-        = render 'layouts/footer'
-    = render 'layouts/scroll_top'
+  %body.bg-gradient-primary
+    .container
+      .row.justify-content-center
+        .col-xl-10.col-lg-12.col-md-9
+          .card.o-hidden.border-0.shadow-lg.my-5
+            .card-body.p-0
+              .row
+                .col-lg-6.d-none.d-lg-block.bg-login-image
+                = yield
