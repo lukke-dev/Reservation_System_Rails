@@ -1,0 +1,6 @@
+- if controller_name != 'sessions'
+  .text-center
+    = link_to "Log in", new_session_path(resource_name), class: 'small'
+- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations'
+  .text-center
+    = link_to "Forgot your password?", new_password_path(resource_name), class: 'small'
