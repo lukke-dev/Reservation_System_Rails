@@ -1,0 +1,21 @@
+%h1 Listing categories
+
+%table.table.table-hover.table-striped
+  %thead
+    %tr.table-top
+      %th Id
+      %th Name
+      %th
+      %th
+
+  %tbody
+    - @categories.each do |category|
+      %tr
+        %td= category.id
+        %td= category.name
+        %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_category_path(category)
+        %td= link_to set_button('xmark', 'Apagar', 'danger'), category, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Category', new_category_path

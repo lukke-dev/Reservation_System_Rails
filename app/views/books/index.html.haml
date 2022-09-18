@@ -1,0 +1,23 @@
+%h1.text-center Listing books
+
+%table.table.table-hover.table-striped
+  %thead
+    %tr.table-top
+      %th Title
+      %th Author
+      %th Category
+      %th
+      %th
+
+  %tbody
+    - @books.each do |book|
+      %tr
+        %td= book.title
+        %td= book.author
+        %td= book.category.name
+        %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
+        %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Book', new_book_path

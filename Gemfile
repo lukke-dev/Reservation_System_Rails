@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'haml-rails'
 gem 'devise'
 gem 'apexcharts'
+gem 'toastr-rails'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do

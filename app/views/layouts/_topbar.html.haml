@@ -1,4 +1,4 @@
-%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow
+%nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow.pe-4
 	%button#sidebarToggleTop.btn.btn-link.d-md-none.rounded-circle.mr-3
 		%i.fa.fa-bars
 	%form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
@@ -19,9 +19,9 @@
 							%button.btn.btn-primary{:type => "button"}
 								%i.fas.fa-search.fa-sm
 		%li.nav-item.dropdown.no-arrow.mx-1
-			%a#alertsDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+			%a#alertsDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :role => "button"}
 				%i.fas.fa-bell.fa-fw
-				%span.badge.badge-danger.badge-counter 3+
+				%span.badge.badge-danger.badge-counter.mb-3 3
 			.dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "alertsDropdown"}
 				%h6.dropdown-header
 					Alerts Center
@@ -47,80 +47,20 @@
 						.small.text-gray-500 December 2, 2019
 						Spending Alert: We've noticed unusually high spending for your account.
 				%a.dropdown-item.text-center.small.text-gray-500{:href => "#"} Show All Alerts
-		%li.nav-item.dropdown.no-arrow.mx-1
-			%a#messagesDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-				%i.fas.fa-envelope.fa-fw
-				%span.badge.badge-danger.badge-counter 7
-			.dropdown-list.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "messagesDropdown"}
-				%h6.dropdown-header
-					Message Center
-				%a.dropdown-item.d-flex.align-items-center{:href => "#"}
-					.dropdown-list-image.mr-3
-						= image_tag 'undraw_profile_1', class: 'rounded-circle'
-						.status-indicator.bg-success
-					.font-weight-bold
-						.text-truncate
-							Hi there! I am wondering if you can help me with a
-							problem I've been having.
-						.small.text-gray-500 Emily Fowler · 58m
-				%a.dropdown-item.d-flex.align-items-center{:href => "#"}
-					.dropdown-list-image.mr-3
-						= image_tag 'undraw_profile_2', class: 'rounded-circle'
-						.status-indicator
-					%div
-						.text-truncate
-							I have the photos that you ordered last month, how
-							would you like them sent to you?
-						.small.text-gray-500 Jae Chun · 1d
-				%a.dropdown-item.d-flex.align-items-center{:href => "#"}
-					.dropdown-list-image.mr-3
-						= image_tag 'undraw_profile_3', class: 'rounded-circle'
-						.status-indicator.bg-warning
-					%div
-						.text-truncate
-							Last month's report looks great, I am very happy with
-							the progress so far, keep up the good work!
-						.small.text-gray-500 Morgan Alvarez · 2d
-				%a.dropdown-item.d-flex.align-items-center{:href => "#"}
-					.dropdown-list-image.mr-3
-						%img.rounded-circle{:alt => "...", :src => "https://source.unsplash.com/Mv9hjnEUHR4/60x60"}/
-						.status-indicator.bg-success
-					%div
-						.text-truncate
-							Am I a good boy? The reason I ask is because someone
-							told me that people say this to all dogs, even if they aren't good...
-						.small.text-gray-500 Chicken the Dog · 2w
-				%a.dropdown-item.text-center.small.text-gray-500{:href => "#"} Read More Messages
-		.topbar-divider.d-none.d-sm-block
 		%li.nav-item.dropdown.no-arrow
 			%a#userDropdown.nav-link.dropdown-toggle{ "aria-expanded": "false", "aria-haspopup": "true", "data-bs-toggle": "dropdown", role: "button" }
-				%span.mr-2.d-none.d-lg-inline.text-gray-600.small Douglas McGee
-				= image_tag 'undraw_profile', class: 'rounded-circle img-profile'
+				%span.mr-2.d-none.d-lg-inline.text-gray-600.small
+					= set_name
+				.user-profile-logo
+					%i.fa-regular.fa-user
 			.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{"aria-labelledby" => "userDropdown"}
-				%a.dropdown-item{:href => "#"}
+				= link_to edit_user_registration_path, class: 'dropdown-item' do		
 					%i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
-					Profile
-				%a.dropdown-item{:href => "#"}
-					%i.fas.fa-cogs.fa-sm.fa-fw.mr-2.text-gray-400
-					Settings
-				%a.dropdown-item{:href => "#"}
-					%i.fas.fa-list.fa-sm.fa-fw.mr-2.text-gray-400
-					Activity Log
+					Edit Profile
 				.dropdown-divider
-				%a.dropdown-item{"data-target" => "#logoutModal", "data-toggle" => "modal", :href => "#"}
+				= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
 					%i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
 					Logout
-#logoutModal.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "exampleModalLabel", :role => "dialog", :tabindex => "-1"}
-	.modal-dialog{:role => "document"}
-		.modal-content
-			.modal-header
-				%h5#exampleModalLabel.modal-title Ready to Leave?
-				%button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
-					%span{"aria-hidden" => "true"} ×
-			.modal-body Select "Logout" below if you are ready to end your current session.
-			.modal-footer
-				%button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Cancel
-				%a.btn.btn-primary{:href => "login.html"} Logout
 
 :javascript
 	$("#sidebarToggleTop").on('click', function(e) {
