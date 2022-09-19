@@ -1,2 +1,25 @@
 pt-BR:
-  hello: "Olá mundo"
+  activerecord:
+    models:
+      book: 
+        one: Livro
+        other: Livros
+      category:
+        one: Categoria
+        other: Categorias
+    attributes:
+      book:
+        id: Id
+        title: Titulo
+        author: Autor
+        category_id: Id da categoria
+      category:
+        id: Id
+        name: Nome
+      reservation:
+        id: Id
+        user_id: Id do usuário
+        book_id: Id do livro
+        booking_date: Data de reserva
+        return_date: Data de devolução
+        booking_status: Status da reserva

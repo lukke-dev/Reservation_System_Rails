@@ -2,10 +2,16 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ edit update destroy ]
 
   def index
-    set_objects_to_select
-    params[:q] = params[:q]&.merge(user_id_eq: current_user.id) || { user_id_eq: current_user.id } unless current_user.is_admin
-    @q = Reservation.includes(:user, :book).ransack(params[:q])
-    @reservations = @q.result
+    respond_to do |format|
+      format.html do
+        set_objects_to_select
+        params[:q] = params[:q]&.merge(user_id_eq: current_user.id) || { user_id_eq: current_user.id } unless current_user.is_admin
+        @q = Reservation.includes(:user, :book).ransack(params[:q])
+        @reservations = @q.result
+      end
+      format.csv { send_data Reservation.as_csv }
+    end
+
   end
 
   def new

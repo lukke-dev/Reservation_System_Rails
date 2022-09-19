@@ -2,8 +2,13 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[ edit update destroy ]
 
   def index   
-    @q = Book.includes(:category).ransack(params[:q])
-    @books = @q.result
+    respond_to do |format|
+      format.html do
+        @q = Book.includes(:category).ransack(params[:q])
+        @books = @q.result
+      end
+      format.csv { send_data Book.as_csv }
+    end
   end
 
   def new
