@@ -1,34 +1,46 @@
-%h1 Listing reservations
-%form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
-  .input-group
-    %input.form-control.bg-light.border-0.small{"aria-describedby" => "basic-addon2", "aria-label" => "Search", :placeholder => "Search for...", :type => "text"}/
-    .input-group-append
-      %button.btn.btn-primary{:type => "button"}
-        %i.fas.fa-search.fa-sm
-%table.table.table-hover.table-striped
-  %thead
-    %tr.table-top
-      %th Name
-      %th Email
-      %th Book
-      %th Booking date
-      %th Return date
-      %th Status
-      %th
-      %th
+= render 'shared/breadcrumb', index_name:  'Reservas', index_path: reservations_path, new_name: 'New reservation', new_path: new_reservation_path
+.row
+  .col-3
+    = search_form_for @q, class: 'd-none d-sm-inline-block form-inline mr-auto w-100 navbar-search' do |f|
+      .input-group.mb-2
+        = f.search_field :booking_date_date_equals, placeholder: 'Data de reserva', class: 'form-control bg-white border-1 small'
+      .input-group.mb-2
+        = f.search_field :return_date_date_equals, placeholder: 'Data de devolução', class: 'form-control bg-white border-1 small'
+      - if current_user.is_admin
+        .input-group.mb-2
+          = f.collection_select :user_id_eq, @users, :id, :name, { include_blank: 'Selecionar usuário' }, class: 'form-control bg-white border-1 small', placeholder: 'User'
+      .input-group.mb-2
+        = f.collection_select :book_id_eq, @books, :id, :title, { include_blank: 'Selecionar livro' }, class: 'form-control bg-white border-1 small', placeholder: 'Book'
+      .input-group.mb-2
+        = f.collection_select :booking_status_eq,  Reservation.booking_statuses, :last, :first, { include_blank: 'Status da reserva' }, class: 'form-control bg-white border-1 small', placeholder: 'Book'
+      .mt-2
+        %button.btn.btn-theme{ type: 'submit' }
+          %i.fas.fa-search.fa-sm
+        = link_to reservations_path, class: 'btn btn-theme' do
+          %i.fa.fa-x
+  .col-9
+    %table.table.table-hover.table-striped
+      %thead
+        %tr.table-top
+          %th User name
+          %th Book
+          %th Booking date
+          %th Return date
+          %th Status
+          - if current_user.is_admin
+            %th
+            %th
+            %th
 
-  %tbody
-    - @reservations.each do |reservation|
-      %tr
-        %td= reservation.user.name
-        %td= reservation.user.email
-        %td= reservation.book.title
-        %td= reservation.booking_date.strftime('%d/%m/%Y')
-        %td= reservation.return_date.strftime('%d/%m/%Y')
-        %td= reservation.booking_status
-        %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_reservation_path(reservation)
-        %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Reservation', new_reservation_path
+      %tbody
+        - @reservations.each do |reservation|
+          %tr
+            %td= reservation.user.name
+            %td= reservation.book.title
+            %td= reservation.booking_date.strftime('%d/%m/%Y')
+            %td= reservation.return_date.strftime('%d/%m/%Y')
+            %td= reservation.booking_status
+            - if current_user.is_admin
+              %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)
+              %td= link_to set_button('pen-to-square', 'Editar', 'dark'), edit_reservation_path(reservation)
+              %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }

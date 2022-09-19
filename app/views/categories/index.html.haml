@@ -1,21 +1,31 @@
-%h1 Listing categories
+= render 'shared/breadcrumb', index_name: 'Categorias', index_path: categories_path, new_name: 'New category', new_path: new_category_path
 
-%table.table.table-hover.table-striped
-  %thead
-    %tr.table-top
-      %th Id
-      %th Name
-      %th
-      %th
+.row
+  .col-3
+    = search_form_for @q, class: 'd-none d-sm-inline-block form-inline mr-auto w-100 navbar-search' do |f|
+      .input-group.mb-2
+        = f.search_field :name_i_cont, class: 'form-control bg-white border-1 small', placeholder: 'Name'
+      .mt-2
+        %button.btn.btn-theme{ type: 'submit' }
+          %i.fas.fa-search.fa-sm
+        = link_to categories_path, class: 'btn btn-theme' do
+          %i.fa.fa-x
+  .col-9
+    - if @categories.size.zero?
+      %h3.text-center Nenhuma categoria encontrada
+    -else
+      %table.table.table-hover.table-striped
+        %thead
+          %tr.table-top
+            %th Id
+            %th Name
+            %th
+            %th
 
-  %tbody
-    - @categories.each do |category|
-      %tr
-        %td= category.id
-        %td= category.name
-        %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_category_path(category)
-        %td= link_to set_button('xmark', 'Apagar', 'danger'), category, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Category', new_category_path
+        %tbody
+          - @categories.each do |category|
+            %tr
+              %td= category.id
+              %td= category.name
+              %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_category_path(category)
+              %td= link_to set_button('xmark', 'Apagar', 'danger'), category, method: :delete, data: { confirm: 'Todos os registros de livros nessa categoria serão apagados, tem certeza?' }

@@ -2,7 +2,10 @@ class ReservationsController < ApplicationController
   before_action :set_reservation, only: %i[ edit update destroy ]
 
   def index
-    @reservations = Reservation.all
+    set_objects_to_select
+    params[:q] = params[:q]&.merge(user_id_eq: current_user.id) || { user_id_eq: current_user.id } unless current_user.is_admin
+    @q = Reservation.includes(:user, :book).ransack(params[:q])
+    @reservations = @q.result
   end
 
   def new
@@ -54,5 +57,10 @@ class ReservationsController < ApplicationController
 
   def reservation_params
     params.require(:reservation).permit(:user_id, :book_id, :booking_date, :return_date, :booking_status)
+  end
+
+  def set_objects_to_select
+    @users = User.select(:id, :name)
+    @books = Book.select(:id, :title)
   end
 end

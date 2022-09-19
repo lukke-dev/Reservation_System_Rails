@@ -1,8 +1,9 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ edit update destroy ]
 
-  def index
-    @books = Book.all
+  def index   
+    @q = Book.includes(:category).ransack(params[:q])
+    @books = @q.result
   end
 
   def new

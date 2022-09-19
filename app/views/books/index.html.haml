@@ -1,30 +1,46 @@
-%h1.text-center Listing books
-%form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
-  .input-group
-    %input.form-control.bg-light.border-0.small{"aria-describedby" => "basic-addon2", "aria-label" => "Search", :placeholder => "Search for...", :type => "text"}/
-    .input-group-append
-      %button.btn.btn-primary{:type => "button"}
-        %i.fas.fa-search.fa-sm
-%table.table.table-hover.table-striped
-  %thead
-    %tr.table-top
-      %th Title
-      %th Author
-      %th Category
-      - if current_user.is_admin
-        %th
-        %th
-
-  %tbody
-    - @books.each do |book|
-      %tr
-        %td= book.title
-        %td= book.author
-        %td= book.category.name
-        - if current_user.is_admin
-          %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
-          %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Book', new_book_path
+= render 'shared/breadcrumb', index_name:  'Livros', index_path: books_path, new_name: 'New Book', new_path: new_book_path
+.row
+  .col-3
+    = search_form_for @q, class: 'd-none d-sm-inline-block form-inline mr-auto w-100 navbar-search' do |f|
+      .input-group.mb-2
+        = f.search_field :title_i_cont, class: 'form-control bg-white border-1 small', placeholder: 'Title'
+      .input-group.mb-2
+        = f.search_field :author_i_cont, class: 'form-control bg-white border-1 small', placeholder: 'Author'
+      .input-group.mb-2
+        = f.search_field :created_at_date_equals, placeholder: 'Data de cadastro', class: 'form-control bg-white border-1 small'
+      .input-group.mb-2
+        = f.search_field :updated_at_date_equals, placeholder: 'Data de alteração', class: 'form-control bg-white border-1 small'
+      .input-group
+        = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Selecionar categoria' }, class: 'form-control bg-white border-1 small'
+      .mt-2
+        %button.btn.btn-theme{ type: 'submit' }
+          %i.fas.fa-search.fa-sm
+        = link_to books_path, class: 'btn btn-theme' do
+          %i.fa.fa-x
+      
+  .col-9
+    - if @books.size.zero?
+      %h3.text-center Nenhum livro encontrado
+    -else
+      %table.table.table-hover.table-striped
+        %thead
+          %tr.table-top
+            %th Title
+            %th Author
+            %th Category
+            %th Created at
+            %th Updated at
+            - if current_user.is_admin
+              %th
+              %th
+        %tbody
+          - @books.each do |book|
+            %tr
+              %td= book.title
+              %td= book.author
+              %td= book.category.name
+              %td= I18n.l(book.created_at.to_date)
+              %td= I18n.l(book.updated_at.to_date)
+              - if current_user.is_admin
+                %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
+                %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Todos os registros de reservas relacionados a este livro serão apagados, tem certeza?' }

@@ -25,4 +25,9 @@ module ApplicationHelper
 	def sidebar_class
 		cookies[:sidebar] == 'active' ? 'toggled' : ''
 	end
+
+	def set_active
+		status = current_page?(controller: params[:controller], action: 'index') ? 'active' : ''
+		"breadcrumb-item link-breadcrumb #{status}"
+	end
 end

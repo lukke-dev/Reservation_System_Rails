@@ -4,7 +4,7 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'bootstrap'
 import '../stylesheets/application'
-import "@fortawesome/fontawesome-free/css/all"
+import '@fortawesome/fontawesome-free/css/all'
 import ApexCharts from "apexcharts";
 window.ApexCharts = ApexCharts;
 global.toastr = require("toastr")  

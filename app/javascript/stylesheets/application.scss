@@ -35,3 +35,24 @@
 	width: 30px;
 	height: 30px;
 }
+
+.box-breadcrumb {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	align-items: center;
+	height: 40px;
+}
+
+.box-breadcrumb ol {
+	margin: 0 !important;
+}
+
+.btn-theme {
+	background-color: #0c63e4;
+	color: white;
+}
+
+.btn-theme:hover {
+	border: 1px solid rgba(0, 0, 0, 0.3) !important;
+}

@@ -1,0 +1,8 @@
+.box-breadcrumb
+  %ol.breadcrumb
+    %li.breadcrumb-item
+      = link_to 'Home', root_path
+    %li.breadcrumb-item
+      = link_to index_name, index_path, class: set_active
+  - if new_name.present?
+    = link_to new_name, new_path, class: 'btn btn-theme'
