@@ -19,28 +19,35 @@
         = link_to reservations_path, class: 'btn btn-theme' do
           %i.fa.fa-x
   .col-9
-    %table.table.table-hover.table-striped
-      %thead
-        %tr.table-top
-          %th User name
-          %th Book
-          %th Booking date
-          %th Return date
-          %th Status
-          - if current_user.is_admin
-            %th
-            %th
-            %th
-
-      %tbody
-        - @reservations.each do |reservation|
-          %tr
-            %td= reservation.user.name
-            %td= reservation.book.title
-            %td= reservation.booking_date.strftime('%d/%m/%Y')
-            %td= reservation.return_date.strftime('%d/%m/%Y')
-            %td= reservation.booking_status
+    - if @reservations.size.zero?
+      %h3.text-center Nenhuma reserva encontrada
+    -else
+      %table.table.table-hover.table-striped
+        %thead
+          %tr.table-top
             - if current_user.is_admin
-              %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)
-              %td= link_to set_button('pen-to-square', 'Editar', 'dark'), edit_reservation_path(reservation)
-              %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }
+              %th.w-th User name
+            %th.w-th Book
+            %th Booking date
+            %th Return date
+            %th Status
+            - if current_user.is_admin
+              %th
+              %th
+              %th
+
+        %tbody
+          - @reservations.each do |reservation|
+            %tr
+              - if current_user.is_admin
+                %td
+                  .break-text{ title: reservation.user.name }= reservation.user.name
+              %td
+                .break-text{ title: reservation.book.title }= reservation.book.title
+              %td= reservation.booking_date.strftime('%d/%m/%Y')
+              %td= reservation.return_date.strftime('%d/%m/%Y')
+              %td= reservation.booking_status
+              - if current_user.is_admin
+                %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)
+                %td= link_to set_button('pen-to-square', 'Editar', 'dark'), edit_reservation_path(reservation)
+                %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }

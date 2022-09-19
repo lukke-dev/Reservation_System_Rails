@@ -17,8 +17,20 @@
 	color: white;
 }
 
-.table td {
+.table td,
+.table th {
+	max-width: 20ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
 	word-break: break-word;
+}
+
+.break-text {
+	white-space: nowrap;
+}
+
+.w-th {
+	width: 20%;
 }
 
 .custom-control-label {

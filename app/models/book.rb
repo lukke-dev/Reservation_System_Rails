@@ -1,4 +1,6 @@
 class Book < ApplicationRecord
+  validates_presence_of :title, :author
+  validates :title, uniqueness: true
   belongs_to :category
   has_many :reservations, dependent: :destroy
 

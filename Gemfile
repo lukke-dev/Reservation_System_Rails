@@ -20,6 +20,7 @@ gem 'ransack', '~> 3.2', '>= 3.2.1'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
+  gem 'faker', '~> 2.23'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
