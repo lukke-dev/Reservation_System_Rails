@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
 	before_action :authenticate_user!
+	include SetLocale
 	include ChooseLayout
 	include DeviseWhitelist
 	include AuthorizeResource

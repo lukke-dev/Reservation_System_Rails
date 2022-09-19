@@ -15,6 +15,7 @@ gem 'devise'
 gem 'apexcharts'
 gem 'toastr-rails'
 gem 'cancancan', '~> 3.4'
+gem 'rails-i18n'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do
