@@ -1,4 +1,6 @@
 module ApplicationHelper
+	include Pagy::Frontend
+
 	def set_name
 		current_user.is_admin ? 'Administrator' : current_user.name
 	end
