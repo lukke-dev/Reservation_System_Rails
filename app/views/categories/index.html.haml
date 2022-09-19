@@ -29,3 +29,4 @@
               %td= category.name
               %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_category_path(category)
               %td= link_to set_button('xmark', 'Apagar', 'danger'), category, method: :delete, data: { confirm: 'Todos os registros de livros nessa categoria serão apagados, tem certeza?' }
+      != pagy_bootstrap_nav(@pagy)

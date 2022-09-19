@@ -7,11 +7,10 @@ class ReservationsController < ApplicationController
         set_objects_to_select
         params[:q] = params[:q]&.merge(user_id_eq: current_user.id) || { user_id_eq: current_user.id } unless current_user.is_admin
         @q = Reservation.includes(:user, :book).ransack(params[:q])
-        @reservations = @q.result
+        @pagy, @reservations = pagy(@q.result)
       end
       format.csv { send_data Reservation.as_csv }
     end
-
   end
 
   def new
