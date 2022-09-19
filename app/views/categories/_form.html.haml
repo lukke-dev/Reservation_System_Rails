@@ -11,6 +11,6 @@
     .col-3
       .form-group
         = f.label :name, class: 'form-label'
-        = f.text_field :name, required: true, class: 'form-control'
+        = f.text_field :name, maxlength: 20, class: 'form-control'
       .form-group
         = f.submit 'Save', class: 'btn btn-outline-secondary'

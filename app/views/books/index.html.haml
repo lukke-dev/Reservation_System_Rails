@@ -25,9 +25,9 @@
       %table.table.table-hover.table-striped
         %thead
           %tr.table-top
-            %th Title
-            %th Author
-            %th Category
+            %th.w-th Title
+            %th.w-th Author
+            %th.w-th Category
             %th Created at
             %th Updated at
             - if current_user.is_admin
@@ -36,9 +36,12 @@
         %tbody
           - @books.each do |book|
             %tr
-              %td= book.title
-              %td= book.author
-              %td= book.category.name
+              %td
+                .break-text{ title: book.title }= book.title
+              %td
+                .break-text{ title: book.author }= book.author
+              %td
+                .break-text{ title: book.category.name }= book.category.name
               %td= I18n.l(book.created_at.to_date)
               %td= I18n.l(book.updated_at.to_date)
               - if current_user.is_admin

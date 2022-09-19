@@ -15,6 +15,8 @@ class Reservation < ApplicationRecord
   end
 
   def validate_dates
-    self.errors.add(:booking_date, 'A data de de reserva não pode ser maior que a data de devoluçao') if self.booking_date > self.return_date
+    if self.booking_date.present? && self.return_date.present?
+      self.errors.add(:booking_date, 'A data de de reserva não pode ser maior que a data de devoluçao') if self.booking_date > self.return_date
+    end
   end
 end
