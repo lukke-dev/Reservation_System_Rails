@@ -2,8 +2,13 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ edit update destroy ]
 
   def index
-    @q = Category.ransack(params[:q])
-    @categories = @q.result
+    respond_to do |format|
+      format.html do
+        @q = Category.ransack(params[:q])
+        @categories = @q.result
+      end
+      format.csv { send_data Category.as_csv }
+    end
   end
 
   def new

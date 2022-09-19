@@ -3,6 +3,9 @@ class Reservation < ApplicationRecord
   validate :validate_dates
   belongs_to :user
   belongs_to :book
+  extend ExportCsv
+
+  ATTRIBUTES_EXPORT_CSV = %w[id user_id book_id booking_date return_date]
 
   enum booking_status:  %i[ open finished ]
 

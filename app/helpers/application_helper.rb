@@ -30,4 +30,8 @@ module ApplicationHelper
 		status = current_page?(controller: params[:controller], action: 'index') ? 'active' : ''
 		"breadcrumb-item link-breadcrumb #{status}"
 	end
+
+	def set_path_csv(path)
+		path + '.csv'
+	end
 end

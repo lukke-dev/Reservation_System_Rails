@@ -3,6 +3,9 @@ class Book < ApplicationRecord
   validates :title, uniqueness: true
   belongs_to :category
   has_many :reservations, dependent: :destroy
+  extend ExportCsv
+
+  ATTRIBUTES_EXPORT_CSV = %w[id title author category_id]
 
   ransacker :created_at do
     Arel.sql('date(created_at)')
