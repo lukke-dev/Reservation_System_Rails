@@ -6,6 +6,6 @@ module ChooseLayout
   end
 
 	def choose_layout
-		['devise/passwords', 'devise/sessions'].include?(params[:controller]) ? 'sign_in' : 'application'
+		['devise/passwords', 'users/sessions'].include?(params[:controller]) ? 'sign_in' : 'application'
 	end
 end

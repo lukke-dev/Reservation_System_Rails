@@ -1,5 +1,10 @@
 %h1 Listing reservations
-
+%form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
+  .input-group
+    %input.form-control.bg-light.border-0.small{"aria-describedby" => "basic-addon2", "aria-label" => "Search", :placeholder => "Search for...", :type => "text"}/
+    .input-group-append
+      %button.btn.btn-primary{:type => "button"}
+        %i.fas.fa-search.fa-sm
 %table.table.table-hover.table-striped
   %thead
     %tr.table-top

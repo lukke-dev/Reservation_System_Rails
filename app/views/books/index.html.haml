@@ -1,13 +1,19 @@
 %h1.text-center Listing books
-
+%form.d-none.d-sm-inline-block.form-inline.mr-auto.ml-md-3.my-2.my-md-0.mw-100.navbar-search
+  .input-group
+    %input.form-control.bg-light.border-0.small{"aria-describedby" => "basic-addon2", "aria-label" => "Search", :placeholder => "Search for...", :type => "text"}/
+    .input-group-append
+      %button.btn.btn-primary{:type => "button"}
+        %i.fas.fa-search.fa-sm
 %table.table.table-hover.table-striped
   %thead
     %tr.table-top
       %th Title
       %th Author
       %th Category
-      %th
-      %th
+      - if current_user.is_admin
+        %th
+        %th
 
   %tbody
     - @books.each do |book|
@@ -15,8 +21,9 @@
         %td= book.title
         %td= book.author
         %td= book.category.name
-        %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
-        %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Are you sure?' }
+        - if current_user.is_admin
+          %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
+          %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Are you sure?' }
 
 %br
 
