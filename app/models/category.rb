@@ -3,5 +3,6 @@ class Category < ApplicationRecord
 	has_many :books, dependent: :destroy
 	extend ExportCsv
 
-  ATTRIBUTES_EXPORT_CSV = %w[id name]
+  EXPORT_CSV = %w[id name].freeze
+	CHANGE_ATTRS = {}.freeze
 end

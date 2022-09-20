@@ -27,7 +27,8 @@ module ApplicationHelper
 	end
 
 	def set_active
-		status = current_page?(controller: params[:controller], action: 'index') ? 'active' : ''
+		action = params[:action] == 'import' ? 'import' : 'index'
+		status = current_page?(controller: params[:controller], action: action) ? 'active' : ''
 		"breadcrumb-item link-breadcrumb #{status}"
 	end
 

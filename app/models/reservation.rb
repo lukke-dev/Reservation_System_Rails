@@ -5,7 +5,13 @@ class Reservation < ApplicationRecord
   belongs_to :book
   extend ExportCsv
 
-  ATTRIBUTES_EXPORT_CSV = %w[id user_id book_id booking_date return_date]
+  EXPORT_CSV = %w[id user_id book_id booking_date return_date].freeze
+  CHANGE_ATTRS = {			
+    user_id: 'user_name',
+    book_id: 'book_title',
+    booking_date: 'booking_date_formated',
+    return_date: 'return_date_formated'
+  }.freeze
 
   enum booking_status:  %i[ open finished ]
 
@@ -15,6 +21,22 @@ class Reservation < ApplicationRecord
 
   ransacker :return_date do
     Arel.sql('date(return_date)')
+  end
+
+  def user_name
+    user.name
+  end
+
+  def book_title
+    book.title
+  end
+
+  def booking_date_formated
+    I18n.l(booking_date.to_date)
+  end
+
+  def return_date_formated
+    I18n.l(return_date.to_date)
   end
 
   def validate_dates

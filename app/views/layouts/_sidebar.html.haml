@@ -42,7 +42,7 @@
 					= link_to 'Cadastrar categoria', new_category_path, class: 'collapse-item'
 					= link_to 'Visualizar todas', categories_path, class: 'collapse-item'
 		%li.nav-item
-			%a.nav-link	
+			= link_to import_books_path, class: 'nav-link' do
 				%i.fa.fa-file-import
 				%span Import Books
 				%sup csv

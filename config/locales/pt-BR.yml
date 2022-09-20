@@ -12,14 +12,14 @@ pt-BR:
         id: Id
         title: Titulo
         author: Autor
-        category_id: Id da categoria
+        category_id: Categoria
       category:
         id: Id
         name: Nome
       reservation:
         id: Id
-        user_id: Id do usuário
-        book_id: Id do livro
+        user_id: Usuário
+        book_id: Livro
         booking_date: Data de reserva
         return_date: Data de devolução
         booking_status: Status da reserva

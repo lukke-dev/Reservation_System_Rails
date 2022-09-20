@@ -1,0 +1,12 @@
+= render 'shared/breadcrumb', index_name: 'Importar livros', index_path: import_books_path, new_name: nil
+= form_tag import_file_books_path, multipart: true do
+	.row 
+		.col-md-3
+			= link_to download_csv_template_books_path, class: 'btn btn-sm btn-theme' do
+				%i.fas.fa-download.fa-sm.text-dark-50
+				Template Csv
+	%br
+	.row
+		.col-6.d-flex
+			= file_field_tag :file, class: 'form-control', accept: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'
+			= submit_tag 'Importar Csv', class: 'btn btn-sm btn-theme mx-1'

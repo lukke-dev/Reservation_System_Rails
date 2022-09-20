@@ -52,6 +52,30 @@ class BooksController < ApplicationController
     end
   end
 
+  def download_csv_template
+    csv_string = generate_csv(Book::IMPORT_CSV)
+    respond_to do |format|
+      format.csv do
+        send_data "\uFEFF" + csv_string, type: :csv, filename: 'books_template.csv'
+      end
+    end
+  end
+
+  def import; end
+
+  def import_file
+    folder = File.join(Rails.root.join('tmp', 'imports'))
+    FileUtils.mkdir_p(folder) unless Dir.exist?(folder)
+
+    filename = "#{SecureRandom.alphanumeric(10)}-import-books.csv"
+    path = File.join(folder, filename)
+
+    File.open(path, 'wb') { |f| f.write(CSV.parse(params[:file].tempfile)) }
+    
+    ImportCsvWorker.perform_async(filename)
+    redirect_to import_books_path, notice: 'A importação está sendo processada...'
+  end
+
   private
 
   def set_book

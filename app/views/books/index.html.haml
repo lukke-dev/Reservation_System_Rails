@@ -41,7 +41,7 @@
               %td
                 .break-text{ title: book.author }= book.author
               %td
-                .break-text{ title: book.category.name }= book.category.name
+                .break-text{ title: book.category_name }= book.category_name
               %td= I18n.l(book.created_at.to_date)
               %td= I18n.l(book.updated_at.to_date)
               - if current_user.is_admin

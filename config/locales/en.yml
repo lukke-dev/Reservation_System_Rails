@@ -15,14 +15,14 @@ en:
         id: Id
         title: Title
         author: Author
-        category_id: Category id
+        category_id: Category
       category:
         id: Id
         name: Name
       reservation:
         id: Id
-        user_id: User id
-        book_id: Book id
+        user_id: User
+        book_id: Book
         booking_date: Booking Date
         return_date: Return Date
         booking_status: Booking Status

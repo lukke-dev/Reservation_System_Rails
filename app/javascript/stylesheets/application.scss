@@ -1,11 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'toastr';
 
+$theme-color: #0c63e4;
+
 .user-profile-logo {
 	border-radius: 50%;
 	height: 2rem;
 	width: 2rem;
-	background-color: #0c63e4;
+	background-color: $theme-color;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -13,7 +15,7 @@
 }
 
 .table-top {
-	background-color: #0c63e4;
+	background-color: $theme-color;
 	color: white;
 }
 
@@ -56,12 +58,8 @@
 	height: 40px;
 }
 
-.box-breadcrumb ol {
-	margin: 0 !important;
-}
-
 .btn-theme {
-	background-color: #0c63e4;
+	background-color: $theme-color;
 	color: white;
 }
 

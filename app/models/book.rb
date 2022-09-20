@@ -5,7 +5,18 @@ class Book < ApplicationRecord
   has_many :reservations, dependent: :destroy
   extend ExportCsv
 
-  ATTRIBUTES_EXPORT_CSV = %w[id title author category_id]
+  EXPORT_CSV = %w[id title author category_id].freeze
+  CHANGE_ATTRS = { user_id: 'user.name', category_id: 'category_name' }.freeze
+
+  IMPORT_CSV = [
+    I18n.t('activerecord.attributes.book.title'),
+    I18n.t('activerecord.attributes.book.author'),
+    "Id #{I18n.t('activerecord.attributes.book.category_id')}"
+  ].freeze
+
+  def category_name
+    category.name
+  end
 
   ransacker :created_at do
     Arel.sql('date(created_at)')

@@ -1,0 +1,3 @@
+---
+:queues:
+  - import_csv_worker
