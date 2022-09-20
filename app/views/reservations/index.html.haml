@@ -40,11 +40,11 @@
             %tr
               - if current_user.is_admin
                 %td
-                  .break-text{ title: reservation.user.name }= reservation.user.name
+                  .break-text{ title: reservation.user_name }= reservation.user_name
               %td
-                .break-text{ title: reservation.book.title }= reservation.book.title
-              %td= reservation.booking_date.strftime('%d/%m/%Y')
-              %td= reservation.return_date.strftime('%d/%m/%Y')
+                .break-text{ title: reservation.book_title }= reservation.book_title
+              %td= reservation.booking_date_formated
+              %td= reservation.return_date_formated
               %td= reservation.booking_status
               - if current_user.is_admin
                 %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)

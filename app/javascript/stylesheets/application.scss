@@ -1,79 +1,77 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'toastr';
 
+$theme-color: #0c63e4;
+
 .user-profile-logo {
-	border-radius: 50%;
-	height: 2rem;
-	width: 2rem;
-	background-color: #0c63e4;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	color: white;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-color: $theme-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
 .table-top {
-	background-color: #0c63e4;
-	color: white;
+  background-color: $theme-color;
+  color: white;
 }
 
 .table td,
 .table th {
-	max-width: 20ch;
+  max-width: 20ch;
   overflow: hidden;
   text-overflow: ellipsis;
-	word-break: break-word;
+  word-break: break-word;
 }
 
 .break-text {
-	white-space: nowrap;
+  white-space: nowrap;
 }
 
 .w-th {
-	width: 20%;
+  width: 20%;
 }
 
 .custom-control-label {
-	padding-top: 2px;
+  padding-top: 2px;
 }
 
 .home-container {
   background-image: url('/assets/image-home.jpg');
-	background-size: cover;
+  background-size: cover;
 }
 
 .flag-language img {
-	cursor: pointer;
-	width: 30px;
-	height: 30px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
 }
 
 .box-breadcrumb {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 15px;
-	align-items: center;
-	height: 40px;
-}
-
-.box-breadcrumb ol {
-	margin: 0 !important;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  align-items: center;
+  height: 40px;
 }
 
 .btn-theme {
-	background-color: #0c63e4;
-	color: white;
+  background-color: $theme-color;
+  color: white;
 }
 
 .btn-theme:hover {
-	border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
 }
 
 .btn-csv {
-	background-color: gray;
-	color: white;
+  background-color: gray;
+  color: white;
 }
 
 .btn-csv:hover {
-	border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
 }

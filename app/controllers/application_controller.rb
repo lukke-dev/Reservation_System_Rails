@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
 	include ChooseLayout
 	include DeviseWhitelist
 	include AuthorizeResource
+	include GenerateTemplateCsv
 	include Pagy::Backend
 
 	rescue_from CanCan::AccessDenied do |exception|

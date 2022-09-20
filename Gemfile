@@ -17,6 +17,8 @@ gem 'toastr-rails'
 gem 'cancancan', '~> 3.4'
 gem 'rails-i18n'
 gem 'ransack', '~> 3.2', '>= 3.2.1'
+gem 'sidekiq', '~> 6.5'
+gem 'redis'
 gem 'pagy'
 gem 'bootsnap', '>= 1.4.4', require: false
 
