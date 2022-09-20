@@ -5,7 +5,7 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html do
         @q = Book.includes(:category).ransack(params[:q])
-        @books = @q.result
+        @pagy, @books = pagy(@q.result)
       end
       format.csv { send_data Book.as_csv }
     end

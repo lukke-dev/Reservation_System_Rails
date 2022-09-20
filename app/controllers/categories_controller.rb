@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       format.html do
         @q = Category.ransack(params[:q])
-        @categories = @q.result
+        @pagy, @categories = pagy(@q.result)
       end
       format.csv { send_data Category.as_csv }
     end

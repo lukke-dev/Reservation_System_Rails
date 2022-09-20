@@ -50,3 +50,4 @@
                 %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)
                 %td= link_to set_button('pen-to-square', 'Editar', 'dark'), edit_reservation_path(reservation)
                 %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }
+      != pagy_bootstrap_nav(@pagy)
