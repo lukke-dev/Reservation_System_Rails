@@ -14,6 +14,7 @@ class ImportCsvService
       delete_file
     rescue => e
       puts e
+    end
   end
 
   def prepare_file(path)
