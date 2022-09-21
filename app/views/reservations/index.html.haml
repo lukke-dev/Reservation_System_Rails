@@ -1,18 +1,18 @@
-= render 'shared/breadcrumb', index_name:  'Reservas', index_path: reservations_path, new_name: 'New reservation', new_path: new_reservation_path
+= render 'shared/breadcrumb', index_name: I18n.t('activerecord.models.reservation.other'), index_path: reservations_path, new_name: I18n.t('register_reservation'), new_path: new_reservation_path
 .row
   .col-3
     = search_form_for @q, class: 'd-none d-sm-inline-block form-inline mr-auto w-100 navbar-search' do |f|
       .input-group.mb-2
-        = f.search_field :booking_date_date_equals, placeholder: 'Data de reserva', class: 'form-control bg-white border-1 small'
+        = f.search_field :booking_date_date_equals, placeholder: I18n.t('activerecord.attributes.reservation.booking_date'), class: 'form-control bg-white border-1 small'
       .input-group.mb-2
-        = f.search_field :return_date_date_equals, placeholder: 'Data de devolução', class: 'form-control bg-white border-1 small'
+        = f.search_field :return_date_date_equals, placeholder: I18n.t('activerecord.attributes.reservation.return_date'), class: 'form-control bg-white border-1 small'
       - if current_user.is_admin
         .input-group.mb-2
-          = f.collection_select :user_id_eq, @users, :id, :name, { include_blank: 'Selecionar usuário' }, class: 'form-control bg-white border-1 small', placeholder: 'User'
+          = f.collection_select :user_id_eq, @users, :id, :name, { include_blank: I18n.t('select_user') }, class: 'form-control bg-white border-1 small'
       .input-group.mb-2
-        = f.collection_select :book_id_eq, @books, :id, :title, { include_blank: 'Selecionar livro' }, class: 'form-control bg-white border-1 small', placeholder: 'Book'
+        = f.collection_select :book_id_eq, @books, :id, :title, { include_blank: I18n.t('select_book') }, class: 'form-control bg-white border-1 small'
       .input-group.mb-2
-        = f.collection_select :booking_status_eq,  Reservation.booking_statuses, :last, :first, { include_blank: 'Status da reserva' }, class: 'form-control bg-white border-1 small', placeholder: 'Book'
+        = f.collection_select :booking_status_eq,  Reservation.human_booking_statuses, :last, :first, { include_blank: I18n.t('activerecord.attributes.reservation.booking_status') }, class: 'form-control bg-white border-1 small'
       .mt-2
         %button.btn.btn-theme{ type: 'submit' }
           %i.fas.fa-search.fa-sm
@@ -20,18 +20,19 @@
           %i.fa.fa-x
   .col-9
     - if @reservations.size.zero?
-      %h3.text-center Nenhuma reserva encontrada
+      %h3.text-center= I18n.t('no_reservations')
     -else
-      %table.table.table-hover.table-striped
+      %table.table.table-hover.table-striped.text-center
         %thead
           %tr.table-top
             - if current_user.is_admin
-              %th.w-th User name
-            %th.w-th Book
-            %th Booking date
-            %th Return date
-            %th Status
+              %th.w-th= I18n.t('activerecord.attributes.reservation.user_id')
+            %th.w-th= I18n.t('activerecord.attributes.reservation.book_id')
+            %th.w-th= I18n.t('activerecord.attributes.reservation.booking_date')
+            %th.w-th= I18n.t('activerecord.attributes.reservation.return_date')
+            %th.w-th= I18n.t('activerecord.attributes.reservation.booking_status')
             - if current_user.is_admin
+              %th
               %th
               %th
               %th
@@ -43,11 +44,15 @@
                   .break-text{ title: reservation.user_name }= reservation.user_name
               %td
                 .break-text{ title: reservation.book_title }= reservation.book_title
-              %td= reservation.booking_date_formated
-              %td= reservation.return_date_formated
-              %td= reservation.booking_status
+              %td
+                .break-text{ title: reservation.booking_date_formated }= reservation.booking_date_formated
+              %td
+                .break-text{ title: reservation.return_date_formated }= reservation.return_date_formated
+              %td
+                .break-text= Reservation.human_enum(reservation.booking_status)
               - if current_user.is_admin
-                %td= link_to set_button('arrows-rotate', 'Alterar estado', 'success'), edit_reservation_path(reservation)
-                %td= link_to set_button('pen-to-square', 'Editar', 'dark'), edit_reservation_path(reservation)
-                %td= link_to set_button('xmark', 'Apagar', 'danger'), reservation, method: :delete, data: { confirm: 'Are you sure?' }
+                %td= link_to set_button('arrows-rotate', I18n.t('change_status'), 'success'), set_query_to_change(reservation.id), method: :post
+                %td= link_to set_button('pen-to-square', I18n.t('edit'), 'dark'), edit_reservation_path(reservation)
+                %td= link_to set_button('xmark', I18n.t('delete'), 'danger'), reservation, method: :delete, data: { confirm: I18n.t('confirm_delete') }
+                %td
       != pagy_bootstrap_nav(@pagy)

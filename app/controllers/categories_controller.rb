@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @q = Category.ransack(params[:q])
+        @q = Category.order(:id).ransack(params[:q])
         @pagy, @categories = pagy(@q.result)
       end
       format.csv { send_data Category.as_csv }
@@ -22,11 +22,9 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to categories_path, notice: "Category was successfully created." }
-        format.json { render :index, status: :created }
+        format.html { redirect_to categories_path, notice: I18n.t('successfully_created', model: I18n.t('activerecord.models.category.one')) }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -34,11 +32,9 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to categories_path, notice: "Category was successfully updated." }
-        format.json { render :index, status: :ok }
+        format.html { redirect_to categories_path, notice: I18n.t('successfully_updated', model: I18n.t('activerecord.models.category.one')) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @category.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,8 +43,7 @@ class CategoriesController < ApplicationController
     @category.destroy
 
     respond_to do |format|
-      format.html { redirect_to categories_url, notice: "Category was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to categories_url, notice: I18n.t('successfully_destroyed', model: I18n.t('activerecord.models.category.one')) }
     end
   end
 

@@ -11,6 +11,8 @@ class ImportCsvService
     prepare_objects
     create_records
     delete_file
+    rescue ActiveRecord::RecordInvalid => e
+      puts e
   end
 
   def prepare_file(path)

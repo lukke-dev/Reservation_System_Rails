@@ -1,10 +1,11 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ edit update destroy ]
+  before_action :set_objects_to_select, only: %i[ index new edit create update ]
 
   def index   
     respond_to do |format|
       format.html do
-        @q = Book.includes(:category).ransack(params[:q])
+        @q = Book.includes(:category).order(:title).ransack(params[:q])
         @pagy, @books = pagy(@q.result)
       end
       format.csv { send_data Book.as_csv }
@@ -22,11 +23,9 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        format.html { redirect_to books_path, flash: { notice: "Book was successfully created." }}
-        format.json { render :index, status: :created }
+        format.html { redirect_to books_path, flash: { notice: I18n.t('successfully_created', model: I18n.t('activerecord.models.book.one')) }}
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -34,11 +33,9 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to books_path, notice: "Book was successfully updated." }
-        format.json { render :index, status: :ok }
+        format.html { redirect_to books_path, notice: I18n.t('successfully_updated', model: I18n.t('activerecord.models.book.one')) }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @book.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -47,8 +44,7 @@ class BooksController < ApplicationController
     @book.destroy
 
     respond_to do |format|
-      format.html { redirect_to books_url, notice: "Book was successfully destroyed." }
-      format.json { head :no_content }
+      format.html { redirect_to books_url, notice: I18n.t('successfully_destroyed', model: I18n.t('activerecord.models.book.one')) }
     end
   end
 
@@ -84,5 +80,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title, :author, :category_id)
+  end
+
+  def set_objects_to_select
+    @categories = Category.select(:id, :name).order(:name)
   end
 end

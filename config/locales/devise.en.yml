@@ -1,6 +1,10 @@
 # Additional translations at https://github.com/heartcombo/devise/wiki/I18n
 
 en:
+  activerecord:
+    attributes:
+      user:
+        is_admin: Administrator?
   devise:
     confirmations:
       confirmed: "Your email address has been successfully confirmed."

@@ -1,6 +1,6 @@
 require 'faker'
 
-10.times do
+15.times do
 	User.create(
 		email: Faker::Internet.email, 
 		name: Faker::Name.name, 
@@ -9,24 +9,24 @@ require 'faker'
 	)
 end
 
-30.times do
+50.times do
 	Category.create(
 		name: Faker::Book.genre
 	)
 end
 
-100.times do
+120.times do
 	Book.create(
 		title: Faker::Book.title,
 		author: Faker::Book.author,
-		category_id: rand(1..30)
+		category_id: rand(1..50)
 	)
 end
 
 50.times do |i|
 	Reservation.create(
-		user_id: rand(1..10), 
-		book_id: rand(1..100), 
+		user_id: rand(1..15),
+		book_id: rand(1..120), 
 		booking_date: Date.today - i.days, 
 		return_date: Date.today + i.days, 
 		booking_status: [0,1].sample

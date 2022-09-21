@@ -1,8 +1,8 @@
 %nav.navbar.navbar-expand.navbar-light.bg-white.topbar.mb-4.static-top.shadow.pe-4
 	.ms-2
-		%a{ onclick: "setLocale('locale=pt-BR');", class: 'flag-language mx-1' }
+		= link_to root_path(locale: 'pt-BR'), class: 'flag-language mx-1' do
 			= image_tag 'brasil-flag.svg'
-		%a{ onclick: "setLocale('locale=en');", class: 'flag-language' }
+		= link_to root_path(locale: 'en'), class: 'flag-language mx-1' do
 			= image_tag 'eua-flag.svg'
 	%ul.navbar-nav.ml-auto
 		%li.nav-item.dropdown.no-arrow.mx-1
@@ -43,7 +43,7 @@
 			.dropdown-menu.dropdown-menu-right.shadow.animated--grow-in{ 'aria-labelledby': 'userDropdown' }
 				= link_to edit_user_registration_path, class: 'dropdown-item' do		
 					%i.fas.fa-user.fa-sm.fa-fw.mr-2.text-gray-400
-					Edit Profile
+					= I18n.t('edit_profile')
 				.dropdown-divider
 				= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
 					%i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
@@ -55,8 +55,3 @@
 		$('.sidebar').toggleClass('toggled');
 		if ($('.sidebar').hasClass('toggled')) { $('.sidebar .collapse').collapse('hide'); };
 	});
-
-	function setLocale(locale) {
-		document.cookie = locale;
-		location.reload(true);
-	}

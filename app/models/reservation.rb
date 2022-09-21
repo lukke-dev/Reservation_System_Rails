@@ -13,7 +13,7 @@ class Reservation < ApplicationRecord
     return_date: 'return_date_formated'
   }.freeze
 
-  enum booking_status:  %i[ open finished ]
+  enum booking_status: { opened: 0, finished: 1 }
 
   ransacker :booking_date do
     Arel.sql('date(booking_date)')
@@ -30,6 +30,10 @@ class Reservation < ApplicationRecord
   def book_title
     book.title
   end
+  
+  def self.human_booking_statuses
+    booking_statuses.map{ |k, v| [human_enum(k), v] }
+  end
 
   def booking_date_formated
     I18n.l(booking_date.to_date)
@@ -41,7 +45,7 @@ class Reservation < ApplicationRecord
 
   def validate_dates
     if self.booking_date.present? && self.return_date.present?
-      self.errors.add(:booking_date, 'A data de de reserva não pode ser maior que a data de devoluçao') if self.booking_date > self.return_date
+      self.errors.add(:booking_date, I18n.t('errors.invalide_date')) if self.booking_date > self.return_date
     end
   end
 end

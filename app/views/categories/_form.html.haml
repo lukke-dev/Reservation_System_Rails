@@ -1,16 +1,10 @@
-= render 'shared/breadcrumb', index_name: 'Categorias', index_path: categories_path, new_name: nil
+= render 'shared/breadcrumb', index_name: I18n.t('activerecord.models.category.other'), index_path: categories_path, new_name: nil
 = form_for @category do |f|
-  - if @category.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@category.errors.count, "error")} prohibited this category from being saved:"
-      %ul
-        - @category.errors.full_messages.each do |message|
-          %li= message
-
+  = render "shared/error_messages", resource: @category
   .row
     .col-3
       .form-group
         = f.label :name, class: 'form-label'
         = f.text_field :name, maxlength: 20, class: 'form-control'
       .form-group
-        = f.submit 'Save', class: 'btn btn-outline-secondary'
+        = f.submit class: 'btn btn-outline-secondary'
