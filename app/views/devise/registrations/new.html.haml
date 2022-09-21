@@ -1,5 +1,3 @@
-%h2 Sign up
 .row
   .col-5
-    = render 'form'
-= render "devise/shared/links"
+    = render 'form', text_title: I18n.t('signup_title'), path: new_user_registration_path

@@ -5,7 +5,7 @@
     .sidebar-brand-text.mx-3
       book
       %br
-      %sup reservation
+      %sup system
   %hr.sidebar-divider.my-0
   - if current_user.is_admin
     %li.nav-item
@@ -15,49 +15,49 @@
     %li.nav-item
       = link_to new_user_registration_path, class: 'nav-link' do
         %i.fa.fa-user-plus
-        %span New User
+        %span= I18n.t('new_user')
   %li.nav-item
     %a.nav-link.collapsed{'aria-controls': 'collapseBooks', 'aria-expanded': 'true', 'data-bs-target': '#collapseBooks', 'data-bs-toggle': 'collapse', href: '#'}
       %i.fa.fa-book-open
-      %span Books
+      %span= I18n.t('activerecord.models.book.other')
     #collapseBooks.collapse{'aria-labelledby': 'headingUtilities', 'data-bs-parent': '#accordionSidebar'}
       .bg-white.py-2.collapse-inner.rounded
-        = link_to 'Cadastrar livro', new_book_path, class: 'collapse-item' if current_user.is_admin
-        = link_to 'Visualizar todos', books_path, class: 'collapse-item'
+        = link_to I18n.t('register_book'), new_book_path, class: 'collapse-item' if current_user.is_admin
+        = link_to I18n.t('view_all'), books_path, class: 'collapse-item'
   %li.nav-item
     %a.nav-link.collapsed{'aria-controls': 'collapseReservations', 'aria-expanded': 'true', 'data-bs-target': '#collapseReservations', 'data-bs-toggle': 'collapse', href: '#'}
       %i.fa.fa-calendar-days
-      %span Reservations
+      %span= I18n.t('activerecord.models.reservation.other')
     #collapseReservations.collapse{'aria-labelledby': 'headingPages', 'data-bs-parent': '#accordionSidebar'}
       .bg-white.py-2.collapse-inner.rounded
-        = link_to 'Reservar livro', new_reservation_path, class: 'collapse-item'
-        = link_to 'Visualizar todas', reservations_path, class: 'collapse-item'
+        = link_to I18n.t('register_reservation'), new_reservation_path, class: 'collapse-item'
+        = link_to I18n.t('view_all'), reservations_path, class: 'collapse-item'
   - if current_user.is_admin
     %li.nav-item
       %a.nav-link.collapsed{'aria-controls': 'collapseCategories', 'aria-expanded': 'true', 'data-bs-target': '#collapseCategories', 'data-bs-toggle': 'collapse', href: '#'}
         %i.fa.fa-list
-        %span Book Categories
+        %span= I18n.t('book_categories')
       #collapseCategories.collapse{'aria-labelledby': 'headingPages', 'data-bs-parent': '#accordionSidebar'}
         .bg-white.py-2.collapse-inner.rounded
-          = link_to 'Cadastrar categoria', new_category_path, class: 'collapse-item'
-          = link_to 'Visualizar todas', categories_path, class: 'collapse-item'
+          = link_to I18n.t('register_category'), new_category_path, class: 'collapse-item'
+          = link_to I18n.t('view_all'), categories_path, class: 'collapse-item'
     %li.nav-item
       = link_to import_books_path, class: 'nav-link' do
         %i.fa.fa-file-import
-        %span Import Books
-        %sup csv
+        %span= I18n.t('import_books')
+        %sup= I18n.t('csv')
   %hr.sidebar-divider.d-none.d-md-block
   .text-center.d-none.d-md-inline
     %button#sidebarToggle.rounded-circle.border-0
 
   :javascript
     $('#sidebarToggle').on('click', function(e) {
-      $('body').toggleClass('sidebar-toggled');
-      $('.sidebar').toggleClass('toggled');
-      if ($('.sidebar').hasClass('toggled')) { 
-        $('.sidebar .collapse').collapse('hide');
-        document.cookie = 'sidebar=active';
+      $('#page').toggleClass('sidebar-toggled');
+      $('#accordionSidebar').toggleClass('toggled');
+      if ($('#accordionSidebar').hasClass('toggled')) { 
+        $('#accordionSidebar .collapse').collapse('hide');
+        document.cookie = 'sidebar=active; path=/';
       } else {
-        document.cookie = 'sidebar=inactive';
+        document.cookie = 'sidebar=inactive; path=/';
       }
     });

@@ -1,18 +1,26 @@
 pt-BR:
   activerecord:
     models:
+      user:
+        one: Usuário
+        other: Usuários
       book: 
         one: Livro
         other: Livros
       category:
         one: Categoria
         other: Categorias
+      reservation:
+        one: Reserva
+        other: Reservas
     attributes:
       book:
         id: Id
         title: Titulo
         author: Autor
         category_id: Categoria
+        created_at: Data de Cadastro
+        updated_at: Data de alteração
       category:
         id: Id
         name: Nome
@@ -23,3 +31,47 @@ pt-BR:
         booking_date: Data de reserva
         return_date: Data de devolução
         booking_status: Status da reserva
+        opened: Em Aberto
+        finished: Finalizado
+  errors:
+    invalide_date: não pode ser maior que a data de devoluçao
+    errors_when_save: 'Erro(s) ao salvar:'
+  administrator: Administrador
+  forgot_your_password: Esqueceu sua senha?
+  your_password: Sua senha
+  send_reset_password: Enviar instruções
+  enter_email_adress: Endereço de email
+  welcome_back: Bem vindo!
+  edit_profile: Editar Perfil
+  new_user: Novo Usuário
+  book_categories: Categorias
+  import_books: Importar Livros
+  csv: CSV
+  signup_title: Cadastrar Usuário
+  tip_password: Deixe em branco se você não quer altera-la
+  tip_current_password: Precisamos da senha atual para confirmar as alterações
+  view_all: Visualizar tudo
+  register_book: Cadastrar Livro
+  register_reservation: Reservar Livro
+  register_category: Cadastrar Categoria
+  select_category: Selecionar categoria
+  select_user: Selecionar usuário
+  select_book: Selecionar livro
+  no_books: Nenhum livro encontrado
+  no_categories: Nenhuma categoria encontrada
+  no_reservations: Nenhuma reserva encontrada
+  edit: Editar
+  delete: Apagar
+  change_status: Alterar status
+  export_csv: Exportar CSV
+  import_csv: Importar CSV
+  confirm_delete_book: Todos os registros de reservas relacionados a este livro serão apagados, tem certeza?
+  confirm_delete_category: Todos os registros de livros nessa categoria serão apagados, tem certeza?
+  confirm_delete: Tem certeza?
+  successfully_created: '%{model} criado(a) com sucesso'
+  successfully_updated: '%{model} atualizado(a) com sucesso'
+  successfully_destroyed: '%{model} deletado(a) com sucesso'
+  booking_status_updated: Status da reserva atualizado com sucesso
+  registers: Quantidade de registros
+  more_reserved: Livro mais reservado
+  number_of_reservations: Quantidade de reservas

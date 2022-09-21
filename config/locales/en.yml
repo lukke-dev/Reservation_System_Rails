@@ -1,13 +1,16 @@
 en:
   activerecord:
     models:
+      user:
+        one: User
+        other: Users
       book: 
         one: Book
         other: Books
       category:
         one: Category
         other: Categories
-      Reservation:
+      reservation:
         one: Reservation
         other: Reservations
     attributes:
@@ -16,6 +19,8 @@ en:
         title: Title
         author: Author
         category_id: Category
+        created_at: Created at
+        updated_at: Updated at
       category:
         id: Id
         name: Name
@@ -26,3 +31,47 @@ en:
         booking_date: Booking Date
         return_date: Return Date
         booking_status: Booking Status
+        opened: Opened
+        finished: Finished
+  errors:
+    invalide_date: cannot be greater than the return date
+    errors_when_save: 'Error(s) when saving:'
+  administrator: Administrator
+  forgot_your_password: Forgot your password?
+  your_password: Your password
+  send_reset_password: Send reset password
+  enter_email_adress: Enter Email Address...
+  welcome_back: Welcome Back!
+  edit_profile: Edit Profile
+  new_user: New User
+  book_categories: Book Categories
+  import_books: Import Books
+  csv: CSV
+  signup_title: Sign Up
+  tip_password: Leave blank if you do not want to change it
+  tip_current_password: We need your current password to confirm your changes
+  view_all: View All
+  register_book: New Book
+  register_reservation: New Reservation
+  register_category: New Category
+  select_category: Select category
+  select_user: Select user
+  select_book: Select book
+  no_books: No books found
+  no_categories: No categories found
+  no_reservations: No reservations found
+  edit: Edit
+  delete: Delete
+  change_status: Change status
+  export_csv: Export CSV
+  import_csv: Import CSV
+  confirm_delete_book: All booking records related to this book will be deleted, are you sure?
+  confirm_delete_category: All book records in that category will be deleted, are you sure?
+  confirm_delete: Are you sure?
+  successfully_created: '%{model} was successfully created'
+  successfully_updated: '%{model} was successfully updated'
+  successfully_destroyed: '%{model} was successfully destroyed'
+  booking_status_updated: Booking status was successfully updated
+  registers: Number of records
+  more_reserved: Most reserved book
+  number_of_reservations: Number of reservations

@@ -1,17 +1,17 @@
-= render 'shared/breadcrumb', index_name:  'Livros', index_path: books_path, new_name: 'New Book', new_path: new_book_path
+= render 'shared/breadcrumb', index_name: I18n.t('activerecord.models.book.other'), index_path: books_path, new_name: I18n.t('register_book'), new_path: new_book_path
 .row
   .col-3
     = search_form_for @q, class: 'd-none d-sm-inline-block form-inline mr-auto w-100 navbar-search' do |f|
       .input-group.mb-2
-        = f.search_field :title_i_cont, class: 'form-control bg-white border-1 small', placeholder: 'Title'
+        = f.search_field :title_i_cont, class: 'form-control bg-white border-1 small', placeholder: I18n.t('activerecord.attributes.book.title')
       .input-group.mb-2
-        = f.search_field :author_i_cont, class: 'form-control bg-white border-1 small', placeholder: 'Author'
+        = f.search_field :author_i_cont, class: 'form-control bg-white border-1 small', placeholder: I18n.t('activerecord.attributes.book.author')
       .input-group.mb-2
-        = f.search_field :created_at_date_equals, placeholder: 'Data de cadastro', class: 'form-control bg-white border-1 small'
+        = f.search_field :created_at_date_equals, placeholder: I18n.t('activerecord.attributes.book.created_at'), class: 'form-control bg-white border-1 small'
       .input-group.mb-2
-        = f.search_field :updated_at_date_equals, placeholder: 'Data de alteração', class: 'form-control bg-white border-1 small'
+        = f.search_field :updated_at_date_equals, placeholder: I18n.t('activerecord.attributes.book.updated_at'), class: 'form-control bg-white border-1 small'
       .input-group
-        = f.collection_select :category_id_eq, Category.all, :id, :name, { include_blank: 'Selecionar categoria' }, class: 'form-control bg-white border-1 small'
+        = f.collection_select :category_id_eq, @categories, :id, :name, { include_blank: I18n.t('select_category') }, class: 'form-control bg-white border-1 small'
       .mt-2
         %button.btn.btn-theme{ type: 'submit' }
           %i.fas.fa-search.fa-sm
@@ -20,17 +20,18 @@
       
   .col-9
     - if @books.size.zero?
-      %h3.text-center Nenhum livro encontrado
+      %h3.text-center= I18n.t('no_books')
     -else
-      %table.table.table-hover.table-striped
+      %table.table.table-hover.table-striped.text-center
         %thead
           %tr.table-top
-            %th.w-th Title
-            %th.w-th Author
-            %th.w-th Category
-            %th Created at
-            %th Updated at
+            %th.w-th= I18n.t('activerecord.attributes.book.title')
+            %th.w-th= I18n.t('activerecord.attributes.book.author')
+            %th.w-th= I18n.t('activerecord.attributes.book.category_id')
+            %th.w-th= I18n.t('activerecord.attributes.book.created_at')
+            %th.w-th= I18n.t('activerecord.attributes.book.updated_at')
             - if current_user.is_admin
+              %th
               %th
               %th
         %tbody
@@ -42,9 +43,12 @@
                 .break-text{ title: book.author }= book.author
               %td
                 .break-text{ title: book.category_name }= book.category_name
-              %td= I18n.l(book.created_at.to_date)
-              %td= I18n.l(book.updated_at.to_date)
+              %td
+                .break-text{ title: book.created_at.to_date }= I18n.l(book.created_at.to_date)
+              %td
+                .break-text{ title: book.updated_at.to_date }= I18n.l(book.updated_at.to_date)
               - if current_user.is_admin
-                %td= link_to set_button('pen-to-square', 'Editar', 'secondary'), edit_book_path(book)
-                %td= link_to set_button('xmark', 'Apagar', 'danger'), book, method: :delete, data: { confirm: 'Todos os registros de reservas relacionados a este livro serão apagados, tem certeza?' }
+                %td= link_to set_button('pen-to-square', I18n.t('edit'), 'secondary'), edit_book_path(book)
+                %td= link_to set_button('xmark', I18n.t('delete'), 'danger'), book, method: :delete, data: { confirm: I18n.t('confirm_delete_book') }
+                %td
       != pagy_bootstrap_nav(@pagy)

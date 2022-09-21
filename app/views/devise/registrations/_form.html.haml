@@ -1,3 +1,4 @@
+= render 'shared/breadcrumb', index_name: text_title, index_path: path, new_name: nil
 = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: define_method }) do |f|
 	= render "devise/shared/error_messages", resource: resource
 	.form-group
@@ -8,7 +9,8 @@
 		= f.text_field :email, class: 'form-control'
 	.form-group
 		= f.label :password, class: 'form-label'
-		%i.fa-solid.fa-circle-info{ title: 'leave blank if you do not want to change it' }
+		- if resource.persisted?
+			%i.fa-solid.fa-circle-info{ title: I18n.t('tip_password') }
 		= f.password_field :password, class: 'form-control'
 	.form-group
 		= f.label :password_confirmation, class: 'form-label'
@@ -20,7 +22,7 @@
 				= f.label :is_admin, class: 'custom-control-label'
 		- else
 			= f.label :current_password, class: 'form-label'
-			%i.fa-solid.fa-circle-info{ title: 'we need your current password to confirm your changes' }
+			%i.fa-solid.fa-circle-info{ title: I18n.t('tip_current_password') }
 			= f.password_field :current_password, class: 'form-control'
 	.form-group
 		= f.submit class: 'btn btn-outline-secondary'

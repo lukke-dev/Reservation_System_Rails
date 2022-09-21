@@ -1,5 +1,3 @@
-%h2
-  Edit Profile
 .row
   .col-4
-    = render 'form'
+    = render 'form', text_title: I18n.t('edit_profile'), path: edit_user_registration_path

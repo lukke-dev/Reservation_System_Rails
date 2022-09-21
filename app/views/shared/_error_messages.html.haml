@@ -1,0 +1,10 @@
+- if resource.errors.any?
+  .row.mb-3
+    .col-6
+      .error_container
+        %h3
+          %i.fa.fa-xmark.text-danger
+          = I18n.t('errors.errors_when_save')
+        %ul
+          - resource.errors.full_messages.each do |message|
+            %li= message

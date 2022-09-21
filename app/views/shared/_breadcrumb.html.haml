@@ -6,5 +6,5 @@
       = link_to index_name, index_path, class: set_active
   - if new_name.present?
     %div
-      = link_to 'Exportar CSV', set_path_csv(index_path), class: 'btn btn-sm btn-csv' 
+      = link_to I18n.t('export_csv'), set_path_csv(index_path), class: 'btn btn-sm btn-csv' 
       = link_to new_name, new_path, class: 'btn btn-sm btn-theme'

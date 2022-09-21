@@ -2,7 +2,7 @@
 %html
   %head
     %meta{ content: 'text/html; charset=UTF-8', 'http-equiv': 'Content-Type' }
-    %title Reservation System
+    %title Book System Online
     %meta{ content: 'width=device-width,initial-scale=1', name: 'viewport' }
     = csrf_meta_tags
     = csp_meta_tag
@@ -10,11 +10,15 @@
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body.bg-gradient-primary
+    = toastr_flash 
     .container
       .row.justify-content-center
         .col-xl-10.col-lg-12.col-md-9
           .card.o-hidden.border-0.shadow-lg.my-5
             .card-body.p-0
               .row
-                .col-lg-6.d-none.d-lg-block.bg-login-image
+                .col-lg-6.sign-in-box
+                  %div
+                    Book System 
+                    %br Online
                 = yield

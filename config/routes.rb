@@ -2,7 +2,9 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
-  resources :reservations, except: %i[show]
+  resources :reservations, except: %i[show] do
+    post :change_status
+  end
   resources :books, except: %i[show] do
     collection do
       get :download_csv_template, defaults: { format: 'csv' }

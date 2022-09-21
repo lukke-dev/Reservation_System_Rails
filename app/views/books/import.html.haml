@@ -1,4 +1,4 @@
-= render 'shared/breadcrumb', index_name: 'Importar livros', index_path: import_books_path, new_name: nil
+= render 'shared/breadcrumb', index_name: I18n.t('import_books'), index_path: import_books_path, new_name: nil
 = form_tag import_file_books_path, multipart: true do
   .row 
     .col-md-3
@@ -9,4 +9,4 @@
   .row
     .col-6.d-flex
       = file_field_tag :file, class: 'form-control', accept: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel'
-      = submit_tag 'Importar Csv', class: 'btn btn-sm btn-theme mx-1'
+      = submit_tag I18n.t('import_csv'), class: 'btn btn-sm btn-theme mx-1'

@@ -6,8 +6,8 @@ module SetLocale
   end
 
   def set_locale
-    if cookies[:locale].present? && cookies[:locale] != I18n.locale
-      I18n.locale = cookies[:locale]
-    end
+    session[:locale] = params[:locale] if params[:locale].present?
+    I18n.locale = session[:locale] || I18n.default_locale
   end
 end
+
