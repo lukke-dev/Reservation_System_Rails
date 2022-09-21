@@ -1,24 +1,48 @@
-# README
+# Booking System Online
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The application is available at `https://booking-system.up.railway.app`.
 
-Things you may want to cover:
+<table>
+  <tr>
+    <td>Ruby version</td>
+    <td>
+      3.0.4
+    </td>
+  </tr>
+  <tr>
+    <td>Rails version</td>
+    <td>
+      6.1.4
+    </td>
+  </tr>
+  <tr>
+    <td>Database</td>
+    <td>
+      PostgreSQL (dev/prod)
+    </td>
+  </tr>
+</table>
 
-* Ruby version
+## Access to System
 
-* System dependencies
+```bash
 
-* Configuration
+# Administrator User
+login: administrator@gmail.com
+password:	12345678
 
-* Database creation
+# Common User
+login: commonuser@gmail.com
+password:	12345678
 
-* Database initialization
+```
 
-* How to run the test suite
+## Additional Features
 
-* Services (job queues, cache servers, search engines, etc.)
+Importing books via Csv
 
-* Deployment instructions
+Csv export of all lists
 
-* ...
+Internationalization
+
+Book Categories
