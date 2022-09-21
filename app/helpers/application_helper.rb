@@ -40,7 +40,9 @@ module ApplicationHelper
   end
 
   def set_query_to_change(id)
-    params = request.fullpath.split('?')[1] || 'q%5Bbooking_date_date_equals%5D=&q%5Breturn_date_date_equals%5D=&q%5Buser_id_eq%5D=&q%5Bbook_id_eq%5D=&q%5Bbooking_status_eq%5D='
+    path = request.fullpath.split('?')[1]
+    default_query = 'q%5Bbooking_date_date_equals%5D=&q%5Breturn_date_date_equals%5D=&q%5Buser_id_eq%5D=&q%5Bbook_id_eq%5D=&q%5Bbooking_status_eq%5D='
+    params = path && !path.include?('page') ? path : default_query
     "#{reservation_change_status_path(id)}?#{params}"
   end
 end
