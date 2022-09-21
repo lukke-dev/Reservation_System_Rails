@@ -4,7 +4,7 @@ class HomeController < ApplicationController
 	def dashboard
 		reservations = Reservation.all.pluck(:book_id).tally
 		qtd = reservations.values.tally.keys.max
-		book_id = reservations[reservations.values.tally.keys.max]
+		book_id = reservations.first[0]
 		@data = {
 			users_registereds: User.all.size,
 			books_registereds: Book.all.size,
