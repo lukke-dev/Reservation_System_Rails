@@ -60,16 +60,8 @@ class BooksController < ApplicationController
   def import; end
 
   def import_file
-    folder = File.join(Rails.root.join('tmp', 'imports'))
-    FileUtils.mkdir_p(folder) unless Dir.exist?(folder)
-
-    filename = "#{SecureRandom.alphanumeric(10)}-import-books.csv"
-    path = File.join(folder, filename)
-
-    File.open(path, 'wb') { |f| f.write(CSV.parse(params[:file].tempfile)) }
-    
-    ImportCsvWorker.perform_async(filename)
-    redirect_to import_books_path, notice: 'A importação está sendo processada...'
+    Book.save_file_on_server(params[:file].tempfile)
+    redirect_to import_books_path, notice: I18n.t('import_is_being_processed')
   end
 
   private

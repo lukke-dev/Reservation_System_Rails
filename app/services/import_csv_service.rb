@@ -9,6 +9,7 @@ class ImportCsvService
 
   def perform
     begin
+      return if @content.nil?
       prepare_objects
       create_records
       delete_file
