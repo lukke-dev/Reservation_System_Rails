@@ -75,3 +75,4 @@ en:
   registers: Number of records
   more_reserved: Most reserved book
   number_of_reservations: Number of reservations
+  import_is_being_processed: The import is being processed...

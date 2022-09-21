@@ -1,3 +1,5 @@
+require 'csv'
+
 class Book < ApplicationRecord
   validates_presence_of :title, :author
   validates :title, uniqueness: true
@@ -16,6 +18,17 @@ class Book < ApplicationRecord
 
   def category_name
     category.name
+  end
+
+  def self.save_file_on_server(file)
+    folder = File.join(Rails.root.join('tmp', 'imports'))
+    FileUtils.mkdir_p(folder) unless Dir.exist?(folder)
+
+    filename = "#{SecureRandom.alphanumeric(10)}-import-books.csv"
+    path = File.join(folder, filename)
+
+    File.open(path, 'wb') { |f| f.write(CSV.parse(file)) }
+    ImportCsvWorker.perform_async(filename)
   end
 
   ransacker :created_at do
