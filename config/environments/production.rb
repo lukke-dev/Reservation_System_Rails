@@ -17,6 +17,10 @@ Rails.application.configure do
   config.active_support.disallowed_deprecation_warnings = []
   config.log_formatter = ::Logger::Formatter.new
 
+  config.action_cable.url = 'wss://booking-system.up.railway.app/cable'
+  config.action_cable.allowed_request_origins = [ 'https://booking-system.up.railway.app', 'http://booking-system.up.railway.app' ]
+  config.cache_store = :redis_cache_store, { url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/0') }
+
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
