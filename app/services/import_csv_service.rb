@@ -8,10 +8,11 @@ class ImportCsvService
   end
 
   def perform
-    prepare_objects
-    create_records
-    delete_file
-    rescue ActiveRecord::RecordInvalid => e
+    begin
+      prepare_objects
+      create_records
+      delete_file
+    rescue => e
       puts e
   end
 
