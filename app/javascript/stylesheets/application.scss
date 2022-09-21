@@ -63,8 +63,8 @@ $theme-color: #0c63e4;
 }
 
 .btn-theme {
-  background-color: $theme-color;
-  color: white;
+  background-color: $theme-color !important;
+  color: white !important;
 }
 
 .btn-theme:hover {
@@ -72,8 +72,8 @@ $theme-color: #0c63e4;
 }
 
 .btn-csv {
-  background-color: gray;
-  color: white;
+  background-color: gray !important;
+  color: white !important;
 }
 
 .btn-csv:hover {
