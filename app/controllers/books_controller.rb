@@ -60,7 +60,7 @@ class BooksController < ApplicationController
   def import; end
 
   def import_file
-    Book.save_file_on_server(params[:file].tempfile)
+    Book.save_file_on_server(params[:file].tempfile, current_user.id)
     redirect_to import_books_path, notice: I18n.t('import_is_being_processed')
   end
 
