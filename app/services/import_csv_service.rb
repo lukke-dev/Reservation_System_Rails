@@ -18,14 +18,13 @@ class ImportCsvService
     rescue => error
       Airbrake.notify(error)
       message = 'Falha ao importar livros'
-    ensure
-      notification = create_notification(message)
-      NotificationChannel.broadcast_to(user_id, { notification: notification, action: 'add_notification' })
     end
+    notification = create_notification(message)
+    NotificationChannel.broadcast_to(user_id, { notification: notification, action: 'add_notification' })
   end
 
   def create_notification(message)
-    Notification.create(
+    Notification.create!(
       body: message,
       user_id: user_id
     )
