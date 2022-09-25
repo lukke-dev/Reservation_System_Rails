@@ -21,7 +21,7 @@ class Book < ApplicationRecord
     category.name
   end
 
-  def self.save_file_on_server(file)
+  def self.save_file_on_server(file, user_id)
     folder = File.join(Rails.root.join('tmp', 'imports'))
     FileUtils.mkdir_p(folder) unless Dir.exist?(folder)
 
@@ -29,7 +29,7 @@ class Book < ApplicationRecord
     path = File.join(folder, filename)
 
     File.open(path, 'wb') { |f| f.write(CSV.parse(file)) }
-    ImportCsvWorker.perform_async(filename)
+    ImportCsvWorker.perform_async(filename, user_id)
   end
 
   def send_notification

@@ -20,6 +20,7 @@ gem 'ransack', '~> 3.2', '>= 3.2.1'
 gem 'sidekiq', '~> 6.5'
 gem 'redis'
 gem 'pagy'
+gem 'airbrake-ruby'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 group :development, :test do

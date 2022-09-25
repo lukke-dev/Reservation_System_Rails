@@ -101,9 +101,9 @@ $theme-color: #0c63e4;
 }
 
 .box-notification {
-  font-size: 18px;
+  font-size: 18px !important;
   margin-bottom: 1.5rem;
-  padding: 5px 8px;
+  padding: 5px 8px !important;
 }
 
 #container-notifications {

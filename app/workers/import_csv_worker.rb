@@ -5,7 +5,7 @@ class ImportCsvWorker
 
   sidekiq_options queue: 'import_csv_worker'
 
-  def perform(filename)
-    ImportCsvService.new(filename).perform
+  def perform(filename, user_id)
+    ImportCsvService.new(filename, user_id).perform
 	end
 end

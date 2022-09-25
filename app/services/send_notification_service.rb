@@ -8,8 +8,8 @@ class SendNotificationService
   def perform
     begin
       execute
-    rescue => e
-      puts e
+    rescue => error
+      Airbrake.notify(error)
     end
   end
 
