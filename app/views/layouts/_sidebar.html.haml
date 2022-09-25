@@ -48,16 +48,4 @@
         %sup= I18n.t('csv')
   %hr.sidebar-divider.d-none.d-md-block
   .text-center.d-none.d-md-inline
-    %button#sidebarToggle.rounded-circle.border-0
-
-  :javascript
-    $('#sidebarToggle').on('click', function(e) {
-      $('#page').toggleClass('sidebar-toggled');
-      $('#accordionSidebar').toggleClass('toggled');
-      if ($('#accordionSidebar').hasClass('toggled')) { 
-        $('#accordionSidebar .collapse').collapse('hide');
-        document.cookie = 'sidebar=active; path=/';
-      } else {
-        document.cookie = 'sidebar=inactive; path=/';
-      }
-    });
+    %button#sidebarToggle.rounded-circle.border-0{ onclick: 'general.toggleSidebar();' }

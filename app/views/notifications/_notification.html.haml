@@ -1,0 +1,2 @@
+= form_tag clean_notification_path(notification.id), remote: true, method: :post, onsubmit: 'general.cleanNotifications(this);' do
+	%button.dropdown-item{ type: 'submit' }= notification.body

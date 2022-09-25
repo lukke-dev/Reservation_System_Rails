@@ -45,4 +45,8 @@ module ApplicationHelper
     params = path && !path.include?('page') ? path : default_query
     "#{reservation_change_status_path(id)}?#{params}"
   end
+
+  def set_visible
+    @notifications.size == 0 ? 'display: none;' : ''
+  end
 end

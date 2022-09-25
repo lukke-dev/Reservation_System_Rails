@@ -5,6 +5,21 @@
 		= link_to root_path(locale: 'en'), class: 'flag-language mx-1' do
 			= image_tag 'https://i.ibb.co/jGZGb3r/eua-flag.png'
 	%ul.navbar-nav.ml-auto
+		%li.nav-item.no-arrow.mx-1.dropdown
+			%a.nav-link.dropdown-toggle{ 'data-bs-toggle': 'dropdown', role: 'button', 'aria-expanded': 'false' }
+				%i.fas.fa-bell.fa-fw
+				#badge.badge.badge-danger.badge-counter.box-notification{ style: set_visible }
+					= @notifications.size
+			%ul.dropdown-menu.dropdown-menu-end.shadow.animated--grow-in.dropdown-list
+				%h6.dropdown-header
+					= I18n.t('notifications_center')
+				#container-notifications
+					- if @notifications.size.zero?
+						.text-center.mt-2{ id:'no-notif' }= I18n.t('no_notifications')
+					- else
+						= render @notifications
+				= form_tag clean_all_notifications_path, remote: true, method: :post, onsubmit: 'general.cleanNotifications();' do
+					%button.dropdown-item.text-center.small.text-gray-500{ type: 'submit' }= I18n.t('clean_all_notifications')
 		%li.nav-item.dropdown.no-arrow
 			%a#userDropdown.nav-link.dropdown-toggle{ 'aria-expanded': 'false', 'aria-haspopup': 'true', 'data-bs-toggle': 'dropdown', role: 'button' }
 				%span.mr-2.d-none.d-lg-inline.text-gray-600.small
@@ -19,10 +34,3 @@
 				= link_to destroy_user_session_path, method: :delete, class: 'dropdown-item' do
 					%i.fas.fa-sign-out-alt.fa-sm.fa-fw.mr-2.text-gray-400
 					Logout
-
-:javascript
-	$('#sidebarToggleTop').on('click', function(e) {
-		$('body').toggleClass('sidebar-toggled');
-		$('.sidebar').toggleClass('toggled');
-		if ($('.sidebar').hasClass('toggled')) { $('.sidebar .collapse').collapse('hide'); };
-	});

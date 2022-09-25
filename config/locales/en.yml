@@ -76,3 +76,6 @@ en:
   more_reserved: Most reserved book
   number_of_reservations: Number of reservations
   import_is_being_processed: The import is being processed...
+  no_notifications: There are no notifications
+  notifications_center: Notifications Center
+  clean_all_notifications: Clean all notifications

@@ -99,3 +99,14 @@ $theme-color: #0c63e4;
   border-radius: 1rem;
   padding: 15px;
 }
+
+.box-notification {
+  font-size: 18px;
+  margin-bottom: 1.5rem;
+  padding: 5px 8px;
+}
+
+#container-notifications {
+  max-height: 200px;
+  overflow: auto;
+}
