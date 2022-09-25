@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
   get 'dashboard', to: 'home#dashboard'
+  post :clean_all_notifications, to: 'notifications#clean_all'
+  post '/:id/clean_notification', to: 'notifications#clean', as: :clean_notification
 end

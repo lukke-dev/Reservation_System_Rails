@@ -8,5 +8,6 @@ class Ability
     can :read, Home
     can [:read, :create], Reservation, user_id: user.id
     can :manage, :all if user.is_admin
+    can :manage, Notification
   end
 end

@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 	include DeviseWhitelist
 	include AuthorizeResource
 	include GenerateTemplateCsv
+	include LoadNotifications
 	include Pagy::Backend
 
 	rescue_from CanCan::AccessDenied do |exception|

@@ -43,4 +43,8 @@ module ApplicationHelper
     params = request.fullpath.split('?')[1] || 'q%5Bbooking_date_date_equals%5D=&q%5Breturn_date_date_equals%5D=&q%5Buser_id_eq%5D=&q%5Bbook_id_eq%5D=&q%5Bbooking_status_eq%5D='
     "#{reservation_change_status_path(id)}?#{params}"
   end
+
+  def set_visible
+    @notifications.size == 0 ? 'display: none;' : ''
+  end
 end

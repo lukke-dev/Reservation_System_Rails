@@ -5,6 +5,7 @@ class Book < ApplicationRecord
   validates :title, uniqueness: true
   belongs_to :category
   has_many :reservations, dependent: :destroy
+  after_create :send_notification
   extend ExportCsv
 
   EXPORT_CSV = %w[id title author category_id].freeze
@@ -29,6 +30,10 @@ class Book < ApplicationRecord
 
     File.open(path, 'wb') { |f| f.write(CSV.parse(file)) }
     ImportCsvWorker.perform_async(filename)
+  end
+
+  def send_notification
+    SendNotificationWorker.perform_async(self.id)
   end
 
   ransacker :created_at do
