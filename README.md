@@ -1,3 +1,8 @@
+## Disabled in production to save resources
+
+### Redis
+### Sidekiq queue
+
 # Booking System Online
 
 The application is available at `https://booking-system.up.railway.app`.
