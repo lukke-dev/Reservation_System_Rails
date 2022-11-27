@@ -5,7 +5,7 @@
 
 # Booking System Online
 
-The application is available at `https://booking-system.up.railway.app`.
+The application is available at `https://reservation-system.fly.dev/`.
 
 <table>
   <tr>
