@@ -1,27 +1,24 @@
-# fly.toml file generated for reservation-system-3 on 2023-04-28T17:02:29-03:00
+# fly.toml app configuration file generated for reservation-system on 2023-05-08T11:20:31-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "reservation-system-3"
+app = "reservation-system"
 kill_signal = "SIGINT"
 kill_timeout = 5
+primary_region = "gru"
 processes = []
 
 [build]
-  [build.args]
-    BUILD_COMMAND = "bin/rails fly:build"
-    SERVER_COMMAND = "bin/rails fly:server"
-
-[deploy]
-  release_command = "bin/rails fly:release"
 
 [env]
-  PORT = "8080"
 
 [experimental]
   auto_rollback = true
 
 [[services]]
   http_checks = []
-  internal_port = 8080
+  internal_port = 3000
   processes = ["app"]
   protocol = "tcp"
   script_checks = []
@@ -46,5 +43,5 @@ processes = []
     timeout = "2s"
 
 [[statics]]
-  guest_path = "/app/public"
+  guest_path = "/rails/public"
   url_prefix = "/"
